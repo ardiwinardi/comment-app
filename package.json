@@ -1,17 +1,22 @@
 {
-  "name": "comment-system-app",
+  "name": "comment-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=8000",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.15",
+    "classnames": "^2.3.2",
+    "normalize.css": "^8.0.1",
+    "postcss-normalize": "^10.0.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sass": "^1.64.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
