@@ -4,7 +4,8 @@
 .container{
     background-color: #f3f2ef00;
     margin: auto;
-    @media screen and (min-width: $tablet-breakpoint) {
+   
+    @include respond-to($tablet-breakpoint) {
         width: 70%;
     }
 }

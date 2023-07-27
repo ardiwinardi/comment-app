@@ -1,6 +1,6 @@
-import Avatar from "./Avatar";
 import Box from "./Box";
 import Center from "./Center";
 import Flex from "./Flex";
+import Layout from "./Layout";
 
-export { Avatar, Box, Center, Flex };
+export { Box, Center, Flex, Layout };

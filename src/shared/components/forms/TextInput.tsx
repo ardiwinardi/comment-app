@@ -1,23 +1,13 @@
-import { TextareaHTMLAttributes, useRef, useState } from "react";
-
-import useAutosizeTextarea from "@src/shared/hooks/useAutosizeTextarea";
+import { InputHTMLAttributes, useId } from "react";
 import styles from "./TextInput.module.scss";
 
-type Props = TextareaHTMLAttributes<HTMLTextAreaElement>;
-
+type Props = InputHTMLAttributes<HTMLInputElement> & { label: string };
 export default function TextInput(props: Props) {
-  const [value, setValue] = useState("");
-
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  useAutosizeTextarea(textAreaRef.current, value);
-
+  const id = useId();
   return (
-    <textarea
-      className={styles.input}
-      {...props}
-      ref={textAreaRef}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-    />
+    <div className={styles.container}>
+      <label htmlFor={id}>{props.label}</label>
+      <input id={id} className={styles.input} {...props} />
+    </div>
   );
 }

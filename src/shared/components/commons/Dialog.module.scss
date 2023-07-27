@@ -1,0 +1,40 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.dialog{
+    position: relative;
+    z-index: 50;
+}
+
+.panel{
+    width: 100%;
+    border-radius: 5px;
+    background-color: white;
+    padding:10px;
+    
+    @include respond-to($tablet-breakpoint) {
+        width: 40%;
+        border-radius: ($border-radius - 10);
+        padding: 20px;
+    }
+}
+
+.content{
+    padding: 20px 10px 10px 10px;
+
+}
+
+.backdrop{
+    position: fixed;
+    inset: 0;
+    background-color: rgba( #000000, 0.6);
+}
+
+.container{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+}

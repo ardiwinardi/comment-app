@@ -1,5 +1,4 @@
-import { Box } from "@src/shared/components/layouts";
-import Layout from "@src/shared/components/layouts/Layout";
+import { Box, Layout } from "@src/shared/components/layouts";
 import CommentForm from "./components/CommentForm";
 
 export default function CommentPage() {

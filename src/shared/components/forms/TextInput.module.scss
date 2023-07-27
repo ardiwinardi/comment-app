@@ -1,20 +1,21 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
-
-.input {
-    border-radius: $border-radius;
-    width: 100%;
-    outline: none;
-    font-size: 14px;
-    border: 1px #ccc solid;
+.container{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px 10px;
-    padding-bottom: 0;
+    flex-direction: column;
 
-    &:focus {
-        outline: 1px #ccc solid;
-        outline-style: double;
+    label{
+        font-weight: 700;
+        font-size: 14px;
+        margin: 12px 0px 8px 0px;
+    }
+    .input{
+        padding: 12px 15px;   
+        border-radius: 10px;
+        outline: 1px #adacac solid;
+        border: none;
+
+        &:focus{
+            outline: 2px rgba(42, 42, 110, 0.4) solid;
+         
+        }
     }
 }

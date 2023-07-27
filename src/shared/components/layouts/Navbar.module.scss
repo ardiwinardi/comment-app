@@ -1,7 +1,7 @@
 @import '../../styles/mixins';
 @import '../../styles/variables';
 
-.container{
+.navbar{
     display: block;
     background-color: white;
     padding: 20px 10px;
@@ -10,7 +10,8 @@
     height: 70px;
     display: flex;
     align-items: center;
-    @include respond-to($tablet-breakpoint){
-        height: 15px;
+    
+    @include respond-to($tablet-breakpoint) {
+        height: 20px;
     }
 }
