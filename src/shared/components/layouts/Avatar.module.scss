@@ -1,0 +1,16 @@
+@import '../../styles/placeholders';
+
+.box{
+    @extend %flex;
+    justify-content: center;
+    border-radius: 100%;
+    padding: 10px;
+    background-color: blueviolet;
+    height: 20px;
+    width: 20px;
+    
+    .text {
+        color: white;
+        font-weight: bold;
+    }
+}

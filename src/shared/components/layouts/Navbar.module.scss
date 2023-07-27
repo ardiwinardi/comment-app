@@ -1,0 +1,16 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.container{
+    display: block;
+    background-color: white;
+    padding: 20px 10px;
+    position: sticky;
+    top: 0;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    @include respond-to($tablet-breakpoint){
+        height: 15px;
+    }
+}

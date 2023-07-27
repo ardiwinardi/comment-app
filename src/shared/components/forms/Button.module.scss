@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.button{
+    border-radius: $border-radius;
+    border:none;
+    background-color: #0a66c2;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    
+    padding: 8px 15px;
+    
+    &:hover{
+        background-color: #004182;
+    }
+
+    &:active{
+        background-color: #01376d;
+    }
+}

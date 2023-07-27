@@ -1,0 +1,10 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.container{
+    background-color: #f3f2ef00;
+    margin: auto;
+    @media screen and (min-width: $tablet-breakpoint) {
+        width: 70%;
+    }
+}
