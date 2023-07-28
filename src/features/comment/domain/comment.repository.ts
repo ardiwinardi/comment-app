@@ -8,8 +8,8 @@ import { Comment } from "./comment.entity";
 export interface CommentRepository {
   getAll(dto: GetCommentsDTO): Promise<DataWithMeta<Comment[]>>;
   getById(id: string): Promise<Comment>;
-  create(dto: CreateCommentDTO): Promise<void>;
-  update(dto: UpdateCommentDTO): Promise<void>;
-  delete(id: string): Promise<void>;
+  create(dto: CreateCommentDTO): Promise<boolean>;
+  update(dto: UpdateCommentDTO): Promise<boolean>;
+  delete(id: string): Promise<boolean>;
   addReaction(dto: CreateReactionDTO): Promise<Comment>;
 }

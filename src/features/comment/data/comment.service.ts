@@ -35,21 +35,24 @@ class CommentService implements CommentRepository {
     return commentDTOToEntity(response.data.data);
   }
 
-  async create(dto: CreateCommentDTO): Promise<void> {
+  async create(dto: CreateCommentDTO): Promise<boolean> {
     const payload = {
       comment: dto.comment,
     };
-    await api.post<void>("/comments", payload);
+    await api.post<boolean>("/comments", payload);
+    return true;
   }
-  async update(dto: UpdateCommentDTO): Promise<void> {
+  async update(dto: UpdateCommentDTO): Promise<boolean> {
     const payload = {
       comment: dto.comment,
     };
-    await api.put<void>(`/comments/${dto.id}`, payload);
+    await api.put<boolean>(`/comments/${dto.id}`, payload);
+    return true;
   }
 
-  async delete(id: string): Promise<void> {
-    await api.delete<void>(`/comments/${id}`);
+  async delete(id: string): Promise<boolean> {
+    await api.delete<boolean>(`/comments/${id}`);
+    return true;
   }
 }
 

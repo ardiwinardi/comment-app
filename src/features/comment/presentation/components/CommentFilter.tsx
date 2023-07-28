@@ -1,5 +1,4 @@
 import DropdownMenu from "@src/shared/components/commons/DropdownMenu";
-import { Button } from "@src/shared/components/forms";
 import { Flex } from "@src/shared/components/layouts";
 import { useAppDispatch, useAppSelector } from "@src/shared/redux/hooks";
 import { useMemo } from "react";
@@ -39,14 +38,12 @@ export default function CommentFilter() {
     <Flex>
       <div></div>
       <DropdownMenu menus={menus}>
-        <Button isTextLink>
-          <Flex>
-            <span>
-              {menus.find((menu) => menu.id === orderType)?.label ?? ""}
-            </span>{" "}
-            <HiChevronDown />
-          </Flex>
-        </Button>
+        <Flex>
+          <span>
+            {menus.find((menu) => menu.id === orderType)?.label ?? ""}
+          </span>{" "}
+          <HiChevronDown />
+        </Flex>
       </DropdownMenu>
     </Flex>
   );

@@ -6,8 +6,7 @@ import { AuthContext } from "@src/features/auth/presentation/contexts/AuthContex
 import { Button } from "@src/shared/components/forms";
 import { useAppSelector } from "@src/shared/redux/hooks";
 import { shortenName } from "@src/shared/utils/string-format";
-import { useContext, useEffect, useState } from "react";
-import { Comment } from "../../domain/comment.entity";
+import { useContext, useEffect } from "react";
 import styles from "./CommentList.module.scss";
 import CommentMessage from "./CommentList/CommentMessage";
 import CommentReaction from "./CommentList/CommentReaction";
@@ -17,33 +16,19 @@ export default function CommentList() {
   const orderBy = useAppSelector((state) => state.comment.orderBy);
   const [getComments, getCommentsResult] = useLazyGetCommentsQuery();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [commentList, setCommentList] = useState<Comment[]>([]);
   const meta = getCommentsResult.data?.meta;
+  const commentList = getCommentsResult.data?.data ?? [];
 
   useEffect(() => {
     getComments({ orderBy });
   }, [orderBy]);
 
-  const handleNextPage = async () => {
+  const handleLoadMore = () => {
     if (meta) {
-      setIsLoading(true);
-      const start = (meta.start + 1) * meta.limit;
-      const response = await getComments({ orderBy, start }).unwrap();
-      let commentListTmp: Comment[] = [];
-      if (response.data) {
-        commentListTmp = [...commentList, ...response.data];
-      }
-      setCommentList(commentListTmp);
-      setIsLoading(false);
+      const limit = meta.limit + meta.limit;
+      getComments({ orderBy, start: 0, limit });
     }
   };
-
-  useEffect(() => {
-    if (getCommentsResult.isSuccess) {
-      setCommentList(getCommentsResult.data.data);
-    }
-  }, [getCommentsResult.isSuccess]);
 
   return (
     <Box className={styles.container}>
@@ -67,11 +52,7 @@ export default function CommentList() {
       ))}
       {meta && meta?.total > commentList.length && (
         <Center>
-          <Button
-            variant="default"
-            onClick={handleNextPage}
-            disabled={isLoading}
-          >
+          <Button variant="default" onClick={handleLoadMore}>
             Load more
           </Button>
         </Center>

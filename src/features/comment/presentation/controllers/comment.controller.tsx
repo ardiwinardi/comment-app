@@ -11,6 +11,7 @@ export const commentController = createApi({
   reducerPath: "commentController",
   baseQuery: fakeBaseQuery(),
   tagTypes: ["Comments"],
+  keepUnusedDataFor: 0,
   endpoints: (builder) => ({
     getComments: builder.query<DataWithMeta<Comment[]>, GetCommentsDTO>({
       queryFn: async (request) => ({
@@ -32,19 +33,19 @@ export const commentController = createApi({
       }),
       providesTags: (result, error, id) => [{ type: "Comments", id }],
     }),
-    createComment: builder.mutation<void, CreateCommentDTO>({
+    createComment: builder.mutation<boolean, CreateCommentDTO>({
       queryFn: async (request) => ({
         data: await commentService.create(request),
       }),
       invalidatesTags: [{ type: "Comments", id: "LIST" }],
     }),
-    updateComment: builder.mutation<void, UpdateCommentDTO>({
+    updateComment: builder.mutation<boolean, UpdateCommentDTO>({
       queryFn: async (request) => ({
         data: await commentService.update(request),
       }),
       invalidatesTags: (result, error, { id }) => [{ type: "Comments", id }],
     }),
-    deleteComment: builder.mutation<void, string>({
+    deleteComment: builder.mutation<boolean, string>({
       queryFn: async (id) => ({
         data: await commentService.delete(id),
       }),
