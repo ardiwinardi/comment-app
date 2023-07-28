@@ -1,4 +1,5 @@
 import { ResponseDTO } from "@src/shared/dtos/response.dto";
+import { DataWithMeta } from "@src/shared/entities/data.entity";
 import api from "@src/shared/services/api.service";
 import { Comment } from "../domain/comment.entity";
 import { CommentRepository } from "../domain/comment.repository";
@@ -20,11 +21,14 @@ class CommentService implements CommentRepository {
     );
     return commentDTOToEntity(response.data.data);
   }
-  async getAll(request: GetCommentsDTO): Promise<Comment[]> {
+  async getAll(request: GetCommentsDTO): Promise<DataWithMeta<Comment[]>> {
     const response = await api.get<ResponseDTO<CommentDTO[]>>("/comments", {
       params: request,
     });
-    return response.data?.data?.map((item) => commentDTOToEntity(item));
+    return {
+      data: response.data?.data?.map((item) => commentDTOToEntity(item)),
+      meta: response.data?.meta ?? { total: 0, limit: 0, start: 0 },
+    };
   }
   async getById(id: string): Promise<Comment> {
     const response = await api.get<ResponseDTO<CommentDTO>>(`/comments/${id}`);

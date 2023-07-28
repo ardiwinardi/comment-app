@@ -1,4 +1,5 @@
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
+import { DataWithMeta } from "@src/shared/entities/data.entity";
 import { commentService } from "../../data/comment.service";
 import { CreateCommentDTO } from "../../data/dtos/create-comment.dto";
 import { CreateReactionDTO } from "../../data/dtos/create-reaction.dto";
@@ -11,14 +12,16 @@ export const commentController = createApi({
   baseQuery: fakeBaseQuery(),
   tagTypes: ["Comments"],
   endpoints: (builder) => ({
-    getComments: builder.query<Comment[], GetCommentsDTO>({
+    getComments: builder.query<DataWithMeta<Comment[]>, GetCommentsDTO>({
       queryFn: async (request) => ({
         data: await commentService.getAll(request),
       }),
       providesTags: (result) =>
         result
           ? [
-              ...result.map(({ id }) => ({ type: "Comments", id } as const)),
+              ...result.data.map(
+                ({ id }) => ({ type: "Comments", id } as const)
+              ),
               { type: "Comments", id: "LIST" },
             ]
           : [{ type: "Comments", id: "LIST" }],
