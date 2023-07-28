@@ -31,7 +31,7 @@ export const commentController = createApi({
       queryFn: async (id) => ({
         data: await commentService.getById(id),
       }),
-      providesTags: (result, error, id) => [{ type: "Comments", id }],
+      providesTags: (_result, _error, id) => [{ type: "Comments", id }],
     }),
     createComment: builder.mutation<boolean, CreateCommentDTO>({
       queryFn: async (request) => ({
@@ -43,13 +43,13 @@ export const commentController = createApi({
       queryFn: async (request) => ({
         data: await commentService.update(request),
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: "Comments", id }],
+      invalidatesTags: (_result, _error, { id }) => [{ type: "Comments", id }],
     }),
     deleteComment: builder.mutation<boolean, string>({
       queryFn: async (id) => ({
         data: await commentService.delete(id),
       }),
-      invalidatesTags: (result, error, id) => [{ type: "Comments", id }],
+      invalidatesTags: (_result, _error, id) => [{ type: "Comments", id }],
     }),
     addReaction: builder.mutation<Comment, CreateReactionDTO>({
       queryFn: async (request) => ({
