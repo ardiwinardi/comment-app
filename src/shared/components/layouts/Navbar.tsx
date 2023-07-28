@@ -1,21 +1,34 @@
-import AuthDialog from "@src/features/auth/presentation/components/AuthDialog";
-import { Flex } from "@src/shared/components/layouts";
-import useDisclosure from "@src/shared/hooks/useDisclosure";
+import { AuthContext } from "@src/features/auth/presentation/contexts/AuthContext";
+import authRoutes from "@src/features/auth/presentation/routes";
+import { shortenName } from "@src/shared/utils/string-format";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { Avatar } from "../commons";
+import DropdownMenu from "../commons/DropdownMenu";
+import { Button } from "../forms";
 import styles from "./Navbar.module.scss";
 
 export default function Navbar() {
-  const { open, control } = useDisclosure();
+  const { user, logout } = useContext(AuthContext);
+
+  const menus = [{ label: "Logout", onClick: () => logout() }];
+
   return (
     <div className={styles.navbar}>
-      <Flex>
+      <div className={styles.content}>
         <div>Logo</div>
         <nav>
-          <Avatar text="AS" onClick={() => control.open()} />
+          {user ? (
+            <DropdownMenu menus={menus}>
+              <Avatar text={shortenName(user?.name ?? "")} />
+            </DropdownMenu>
+          ) : (
+            <Link to={authRoutes.login}>
+              <Button variant="primary">Login</Button>
+            </Link>
+          )}
         </nav>
-      </Flex>
-
-      <AuthDialog open={open} handleClose={() => control.close()} />
+      </div>
     </div>
   );
 }

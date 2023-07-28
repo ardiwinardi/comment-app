@@ -1,0 +1,9 @@
+@import '../../../../shared/styles/mixins';
+@import '../../../../shared/styles/variables';
+
+.container {
+    padding: 10px;
+    @include respond-to($tablet-breakpoint) {
+        @include px(0px);
+    }
+}

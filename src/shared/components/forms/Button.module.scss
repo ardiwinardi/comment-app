@@ -4,18 +4,52 @@
 .button{
     border-radius: $border-radius;
     border:none;
-    background-color: #0a66c2;
     color: white;
     font-weight: bold;
     cursor: pointer;
     display: block;    
     padding: 8px 15px;
-    
-    &:hover{
-        background-color: #004182;
-    }
+    transition: all;
+    transition-duration: 0.4s;    
+}
 
+.textLink{
+    font-weight: bold;
+    border:none;
+    background-color: transparent;
+    cursor: pointer;
     &:active{
-        background-color: #01376d;
+        color: #01376d;
     }
+}
+@mixin color($color){
+    background-color: $color;
+    &:hover {
+        background-color: darken($color, 10%)
+    }
+    &:active {
+        background-color: darken($color, 5%)
+    }
+}
+.primary{
+   @include color($color-primary);
+}
+
+.success {
+   @include color($color-success);
+}
+
+.default {
+   @include color($color-default);;
+    color : $font-color;
+}
+
+.warning {
+   @include color($color-warning);
+    color: $font-color;
+}
+
+.danger {
+    @include color($color-danger);
+    color: $font-color;
 }

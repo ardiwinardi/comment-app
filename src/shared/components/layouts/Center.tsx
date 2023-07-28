@@ -1,6 +1,10 @@
-import { PropsWithChildren } from "react";
+import { HtmlHTMLAttributes, PropsWithChildren } from "react";
 import styles from "./Center.module.scss";
-
-export default function Center({ children }: PropsWithChildren) {
-  return <div className={styles.container}>{children}</div>;
+type Props = PropsWithChildren & HtmlHTMLAttributes<HTMLDivElement>;
+export default function Center(props: Props) {
+  return (
+    <div className={styles.container} {...props}>
+      {props.children}
+    </div>
+  );
 }

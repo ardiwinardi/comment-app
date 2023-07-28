@@ -1,8 +1,10 @@
+@import-normalize;
+@import '../../styles/base';
 @import '../../styles/mixins';
 @import '../../styles/variables';
 
 .container{
-    background-color: #f3f2ef00;
+    background-color: #cac9c600;
     margin: auto;
    
     @include respond-to($tablet-breakpoint) {

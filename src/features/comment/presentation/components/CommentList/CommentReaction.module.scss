@@ -1,0 +1,15 @@
+@import '../../../../../shared/styles/variables';
+
+.reactButton {
+    font-size: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: $font-color;
+}
+
+.counter{
+    font-size: 13px;
+    margin-left: 3px;
+}

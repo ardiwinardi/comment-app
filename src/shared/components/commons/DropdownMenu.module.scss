@@ -1,0 +1,42 @@
+@import '../../../shared/styles/variables';
+
+.button{
+    border:none;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+}
+.items{
+    position: absolute;
+    right: 0;
+    z-index: 2;
+    margin-top: 0px;
+    width: 100px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -1px 3px 4px 0px #ccc;
+    border:1px #ccc solid
+}
+
+.item{
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: $font-color;
+    border: none;
+    background: transparent;
+    text-align: left;
+    font-size: 12px;
+    cursor:pointer;
+
+    &:hover{
+        color: $color-primary;
+        background-color: rgb(238, 240, 241);
+        border-radius: 10px;
+        transition: all;
+        transition-duration: 0.3s;
+    }
+}
